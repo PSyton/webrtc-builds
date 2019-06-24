@@ -380,7 +380,7 @@ function combine::static() {
     case $platform in
     win)
       # TODO: Support VS 2017
-      "$VS140COMNTOOLS../../VC/bin/lib" /OUT:$libname.lib @$libname.list
+      "c:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023\bin\Hostx64\x64\lib" /OUT:$libname.lib @$libname.list
       ;;
     *)
       # Combine *.a static libraries
