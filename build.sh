@@ -111,6 +111,11 @@ if [ $BUILD_ONLY = 0 ]; then
   echo "Checking out WebRTC revision (this will take a while): $REVISION"
   checkout "$TARGET_OS" $OUTDIR $REVISION
 
+  echo Patching install-build-deps.sh
+  cd out/src/build
+  /usr/bin/patch -p0 < ../../../install-build-deps-fix.patch
+  cd ../../..
+
   echo Checking WebRTC dependencies
   check::webrtc::deps $PLATFORM $OUTDIR "$TARGET_OS"
 
@@ -119,7 +124,7 @@ if [ $BUILD_ONLY = 0 ]; then
 
   echo Patching WebRTC ffmpeg
   cd out/src/third_party/ffmpeg/
-  patch -p1 < ../../../../ffmpeg-nvdec-vaapi-encoder-decoder.patch
+  /usr/bin/patch -p1 < ../../../../ffmpeg-nvdec-vaapi-encoder-decoder.patch
   cd ../../../..
 
 fi
