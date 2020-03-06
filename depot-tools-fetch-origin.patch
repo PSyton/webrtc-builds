@@ -1,0 +1,12 @@
+diff -Naur depot_tools/fetch_configs/webrtc.py depot_tools.new/fetch_configs/webrtc.py
+--- depot_tools/fetch_configs/webrtc.py	2020-03-06 18:17:32.684239042 +0200
++++ depot_tools.new/fetch_configs/webrtc.py	2020-03-06 18:18:51.731610654 +0200
+@@ -14,7 +14,7 @@
+ 
+   @staticmethod
+   def fetch_spec(props):
+-    url = 'https://webrtc.googlesource.com/src.git'
++    url = 'https://github.com/anba8005/owt-deps-webrtc.git@48bc4a6b97dffc50386f784c2b047ca4b3f39b4e'
+     spec = {
+       'solutions': [
+         {

@@ -64,7 +64,9 @@ PACKAGE_AS_DEBIAN=${PACKAGE_AS_DEBIAN:-0}
 PACKAGE_FILENAME_PATTERN=${PACKAGE_FILENAME_PATTERN:-"webrtc-%rn%-%sr%-%to%-%tc%"}
 PACKAGE_NAME_PATTERN=${PACKAGE_NAME_PATTERN:-"webrtc"}
 PACKAGE_VERSION_PATTERN=${PACKAGE_VERSION_PATTERN:-"%rn%"}
-REPO_URL="https://chromium.googlesource.com/external/webrtc"
+REPO_URL="https://github.com/anba8005/owt-deps-webrtc.git"
+REVISION="48bc4a6b97dffc50386f784c2b047ca4b3f39b4e"
+REVISION_NUMBER=29507
 DEPOT_TOOLS_URL="https://chromium.googlesource.com/chromium/tools/depot_tools.git"
 DEPOT_TOOLS_DIR=$DIR/depot_tools
 TOOLS_DIR=$DIR/tools
@@ -89,6 +91,11 @@ check::build::env $PLATFORM "$TARGET_CPU"
 echo Checking depot-tools
 check::depot-tools $PLATFORM $DEPOT_TOOLS_URL $DEPOT_TOOLS_DIR
 
+echo Patching depot tools
+cd depot_tools
+/usr/bin/patch -p1 < ../depot-tools-fetch-origin.patch
+cd ..
+
 if [ ! -z $BRANCH ]; then
   REVISION=$(git ls-remote $REPO_URL --heads $BRANCH | head --lines 1 | cut --fields 1) || \
     { echo "Cound not get branch revision" && exit 1; }
@@ -98,8 +105,6 @@ else
     { echo "Could not get latest revision" && exit 1; }
 fi
 echo "Building revision: $REVISION"
-REVISION_NUMBER=$(revision-number $REPO_URL $REVISION) || \
-  { echo "Could not get revision number" && exit 1; }
 echo "Associated revision number: $REVISION_NUMBER"
 
 if [ $BUILD_ONLY = 0 ]; then
@@ -111,6 +116,12 @@ if [ $BUILD_ONLY = 0 ]; then
 
   echo Patching WebRTC source
   patch $PLATFORM $OUTDIR $ENABLE_RTTI
+
+  echo Patching WebRTC ffmpeg
+  cd out/src/third_party/ffmpeg/
+  patch -p1 < ../../../../ffmpeg-nvdec-vaapi-encoder-decoder.patch
+  cd ../../../..
+
 fi
 
 echo Compiling WebRTC
@@ -123,11 +134,11 @@ PACKAGE_VERSION=$(interpret-pattern "$PACKAGE_VERSION_PATTERN" "$PLATFORM" "$OUT
 
 echo "Packaging WebRTC: $PACKAGE_FILENAME"
 package::prepare $PLATFORM $OUTDIR $PACKAGE_FILENAME $DIR/resource "$CONFIGS" $REVISION_NUMBER
-if [ "$PACKAGE_AS_DEBIAN" = 1 ]; then
-  package::debian $OUTDIR $PACKAGE_FILENAME $PACKAGE_NAME $PACKAGE_VERSION "$(debian-arch $TARGET_CPU)"
-else
-  package::archive $PLATFORM $OUTDIR $PACKAGE_FILENAME
-  package::manifest $PLATFORM $OUTDIR $PACKAGE_FILENAME
-fi
+#if [ "$PACKAGE_AS_DEBIAN" = 1 ]; then
+#  package::debian $OUTDIR $PACKAGE_FILENAME $PACKAGE_NAME $PACKAGE_VERSION "$(debian-arch $TARGET_CPU)"
+#else
+#  package::archive $PLATFORM $OUTDIR $PACKAGE_FILENAME
+#  package::manifest $PLATFORM $OUTDIR $PACKAGE_FILENAME
+#fi
 
 echo Build successful
