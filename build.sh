@@ -125,6 +125,8 @@ if [ $BUILD_ONLY = 0 ]; then
   echo Patching WebRTC ffmpeg
   cd out/src/third_party/ffmpeg/
   /usr/bin/patch -p1 < ../../../../ffmpeg-nvdec-vaapi-encoder-decoder.patch
+  # https://github.com/FFmpeg/FFmpeg/commit/efefba61f8513e9d909af041b17584fd82775c63
+  /usr/bin/patch -p1 < ../../../../ffmpeg-vaapi-vp8-fix.patch
   cd ../../../..
 
 fi
