@@ -72,8 +72,8 @@ function init-msenv() {
 
   # Rudimentary support for VS2017 in default install location due to
   # lack of VS1S0COMNTOOLS environment variable.
-  if [ -d "C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/VC/Auxiliary/Build" ]; then
-    vcvars_path="C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/VC/Auxiliary/Build"
+  if [ -d "C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Auxiliary/Build" ]; then
+    vcvars_path="C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Auxiliary/Build"
   elif [ ! -z "$VS140COMNTOOLS" ]; then
     vcvars_path="${VS140COMNTOOLS}../../VC"
   else
@@ -380,7 +380,7 @@ function combine::static() {
     case $platform in
     win)
       # TODO: Support VS 2017
-      "c:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023\bin\Hostx64\x64\lib" /OUT:$libname.lib @$libname.list
+      "c:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.25.28610\bin\Hostx64\x64\lib" /OUT:$libname.lib @$libname.list
       ;;
     *)
       # Combine *.a static libraries

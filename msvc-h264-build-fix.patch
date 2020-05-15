@@ -1,0 +1,58 @@
+diff --git a/modules/video_coding/codecs/h264/h264_color_space.h b/modules/video_coding/codecs/h264/h264_color_space.h
+index 392ccaf563..aec76efbac 100644
+--- a/modules/video_coding/codecs/h264/h264_color_space.h
++++ b/modules/video_coding/codecs/h264/h264_color_space.h
+@@ -16,10 +16,6 @@
+ // #ifdef unless needed and tested.
+ #ifdef WEBRTC_USE_H264
+ 
+-#if defined(WEBRTC_WIN) && !defined(__clang__)
+-#error "See: bugs.webrtc.org/9213#c13."
+-#endif
+-
+ #include "api/video/color_space.h"
+ 
+ extern "C" {
+diff --git a/modules/video_coding/codecs/h264/h264_decoder_impl.h b/modules/video_coding/codecs/h264/h264_decoder_impl.h
+index 711496acd8..51f877ec75 100644
+--- a/modules/video_coding/codecs/h264/h264_decoder_impl.h
++++ b/modules/video_coding/codecs/h264/h264_decoder_impl.h
+@@ -17,10 +17,6 @@
+ // #ifdef unless needed and tested.
+ #ifdef WEBRTC_USE_H264
+ 
+-#if defined(WEBRTC_WIN) && !defined(__clang__)
+-#error "See: bugs.webrtc.org/9213#c13."
+-#endif
+-
+ #include <memory>
+ 
+ #include "modules/video_coding/codecs/h264/include/h264.h"
+diff --git a/modules/video_coding/codecs/h264/h264_encoder_impl.h b/modules/video_coding/codecs/h264/h264_encoder_impl.h
+index ba996366a3..7fb87eae9d 100644
+--- a/modules/video_coding/codecs/h264/h264_encoder_impl.h
++++ b/modules/video_coding/codecs/h264/h264_encoder_impl.h
+@@ -17,10 +17,6 @@
+ // #ifdef unless needed and tested.
+ #ifdef WEBRTC_USE_H264
+ 
+-#if defined(WEBRTC_WIN) && !defined(__clang__)
+-#error "See: bugs.webrtc.org/9213#c13."
+-#endif
+-
+ #include <memory>
+ #include <vector>
+ 
+diff --git a/webrtc.gni b/webrtc.gni
+index 05663581b0..12b8c27bc6 100644
+--- a/webrtc.gni
++++ b/webrtc.gni
+@@ -154,7 +154,7 @@ declare_args() {
+   # Enabling H264 when building with MSVC is currently not supported, see
+   # bugs.webrtc.org/9213#c13 for more info.
+   rtc_use_h264 =
+-      proprietary_codecs && !is_android && !is_ios && !(is_win && !is_clang)
++      proprietary_codecs && !is_android && !is_ios
+ 
+   # By default, use normal platform audio support or dummy audio, but don't
+   # use file-based audio playout and record.

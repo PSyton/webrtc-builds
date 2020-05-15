@@ -122,9 +122,15 @@ if [ $BUILD_ONLY = 0 ]; then
   echo Patching WebRTC source
   patch $PLATFORM $OUTDIR $ENABLE_RTTI
 
+  echo Patching WebRTC msvc h264 build fix
+  cd out/src
+  /usr/bin/patch -p1 < ../../msvc-h264-build-fix.patch
+  cd ../..
+
   echo Patching WebRTC ffmpeg
   cd out/src/third_party/ffmpeg/
   /usr/bin/patch -p1 < ../../../../ffmpeg-nvdec-vaapi-encoder-decoder.patch
+  /usr/bin/patch -p1 < ../../../../ffmpeg-msvc-build-fix.patch
   # https://github.com/FFmpeg/FFmpeg/commit/efefba61f8513e9d909af041b17584fd82775c63
   /usr/bin/patch -p1 < ../../../../ffmpeg-vaapi-vp8-fix.patch
   cd ../../../..

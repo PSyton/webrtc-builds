@@ -388,8 +388,173 @@ index 50acddb28e..192a64d7ab 100644
      &ff_mpegaudio_parser,
      &ff_opus_parser,
      &ff_vorbis_parser,
+diff --git a/chromium/config/Chrome/win-msvc/x64/config.asm b/chromium/config/Chrome/win-msvc/x64/config.asm
+index 49d66ac57d..523407e6ca 100644
+--- a/chromium/config/Chrome/win-msvc/x64/config.asm
++++ b/chromium/config/Chrome/win-msvc/x64/config.asm
+@@ -563,7 +563,7 @@
+ %define CONFIG_AUDIO_FRAME_QUEUE 0
+ %define CONFIG_AUDIODSP 0
+ %define CONFIG_BLOCKDSP 0
+-%define CONFIG_BSWAPDSP 0
++%define CONFIG_BSWAPDSP 1
+ %define CONFIG_CABAC 1
+ %define CONFIG_CBS 0
+ %define CONFIG_CBS_H264 0
+@@ -577,7 +577,7 @@
+ %define CONFIG_FDCTDSP 0
+ %define CONFIG_FLACDSP 1
+ %define CONFIG_FMTCONVERT 0
+-%define CONFIG_FRAME_THREAD_ENCODER 0
++%define CONFIG_FRAME_THREAD_ENCODER 1
+ %define CONFIG_G722DSP 0
+ %define CONFIG_GOLOMB 1
+ %define CONFIG_GPLV3 0
+@@ -587,7 +587,7 @@
+ %define CONFIG_H264PARSE 1
+ %define CONFIG_H264PRED 1
+ %define CONFIG_H264QPEL 1
+-%define CONFIG_HEVCPARSE 0
++%define CONFIG_HEVCPARSE 1
+ %define CONFIG_HPELDSP 1
+ %define CONFIG_HUFFMAN 0
+ %define CONFIG_HUFFYUVDSP 0
+@@ -666,7 +666,7 @@
+ %define CONFIG_TRACE_HEADERS_BSF 0
+ %define CONFIG_VP9_RAW_REORDER_BSF 0
+ %define CONFIG_VP9_SUPERFRAME_BSF 0
+-%define CONFIG_VP9_SUPERFRAME_SPLIT_BSF 0
++%define CONFIG_VP9_SUPERFRAME_SPLIT_BSF 1
+ %define CONFIG_AASC_DECODER 0
+ %define CONFIG_AIC_DECODER 0
+ %define CONFIG_ALIAS_PIX_DECODER 0
+@@ -752,7 +752,7 @@
+ %define CONFIG_H264_QSV_DECODER 0
+ %define CONFIG_H264_RKMPP_DECODER 0
+ %define CONFIG_HAP_DECODER 0
+-%define CONFIG_HEVC_DECODER 0
++%define CONFIG_HEVC_DECODER 1
+ %define CONFIG_HEVC_QSV_DECODER 0
+ %define CONFIG_HEVC_RKMPP_DECODER 0
+ %define CONFIG_HEVC_V4L2M2M_DECODER 0
+@@ -898,7 +898,7 @@
+ %define CONFIG_VP8_DECODER 1
+ %define CONFIG_VP8_RKMPP_DECODER 0
+ %define CONFIG_VP8_V4L2M2M_DECODER 0
+-%define CONFIG_VP9_DECODER 0
++%define CONFIG_VP9_DECODER 1
+ %define CONFIG_VP9_RKMPP_DECODER 0
+ %define CONFIG_VP9_V4L2M2M_DECODER 0
+ %define CONFIG_VQA_DECODER 0
+@@ -1450,7 +1450,7 @@
+ %define CONFIG_H261_PARSER 0
+ %define CONFIG_H263_PARSER 0
+ %define CONFIG_H264_PARSER 1
+-%define CONFIG_HEVC_PARSER 0
++%define CONFIG_HEVC_PARSER 1
+ %define CONFIG_MJPEG_PARSER 0
+ %define CONFIG_MLP_PARSER 0
+ %define CONFIG_MPEG4VIDEO_PARSER 0
+diff --git a/chromium/config/Chrome/win-msvc/x64/config.h b/chromium/config/Chrome/win-msvc/x64/config.h
+index 359682176a..835641926e 100644
+--- a/chromium/config/Chrome/win-msvc/x64/config.h
++++ b/chromium/config/Chrome/win-msvc/x64/config.h
+@@ -578,7 +578,7 @@
+ #define CONFIG_AUDIO_FRAME_QUEUE 0
+ #define CONFIG_AUDIODSP 0
+ #define CONFIG_BLOCKDSP 0
+-#define CONFIG_BSWAPDSP 0
++#define CONFIG_BSWAPDSP 1
+ #define CONFIG_CABAC 1
+ #define CONFIG_CBS 0
+ #define CONFIG_CBS_H264 0
+@@ -592,7 +592,7 @@
+ #define CONFIG_FDCTDSP 0
+ #define CONFIG_FLACDSP 1
+ #define CONFIG_FMTCONVERT 0
+-#define CONFIG_FRAME_THREAD_ENCODER 0
++#define CONFIG_FRAME_THREAD_ENCODER 1
+ #define CONFIG_G722DSP 0
+ #define CONFIG_GOLOMB 1
+ #define CONFIG_GPLV3 0
+@@ -681,7 +681,7 @@
+ #define CONFIG_TRACE_HEADERS_BSF 0
+ #define CONFIG_VP9_RAW_REORDER_BSF 0
+ #define CONFIG_VP9_SUPERFRAME_BSF 0
+-#define CONFIG_VP9_SUPERFRAME_SPLIT_BSF 0
++#define CONFIG_VP9_SUPERFRAME_SPLIT_BSF 1
+ #define CONFIG_AASC_DECODER 0
+ #define CONFIG_AIC_DECODER 0
+ #define CONFIG_ALIAS_PIX_DECODER 0
+@@ -767,7 +767,7 @@
+ #define CONFIG_H264_QSV_DECODER 0
+ #define CONFIG_H264_RKMPP_DECODER 0
+ #define CONFIG_HAP_DECODER 0
+-#define CONFIG_HEVC_DECODER 0
++#define CONFIG_HEVC_DECODER 1
+ #define CONFIG_HEVC_QSV_DECODER 0
+ #define CONFIG_HEVC_RKMPP_DECODER 0
+ #define CONFIG_HEVC_V4L2M2M_DECODER 0
+@@ -913,7 +913,7 @@
+ #define CONFIG_VP8_DECODER 1
+ #define CONFIG_VP8_RKMPP_DECODER 0
+ #define CONFIG_VP8_V4L2M2M_DECODER 0
+-#define CONFIG_VP9_DECODER 0
++#define CONFIG_VP9_DECODER 1
+ #define CONFIG_VP9_RKMPP_DECODER 0
+ #define CONFIG_VP9_V4L2M2M_DECODER 0
+ #define CONFIG_VQA_DECODER 0
+@@ -1465,7 +1465,7 @@
+ #define CONFIG_H261_PARSER 0
+ #define CONFIG_H263_PARSER 0
+ #define CONFIG_H264_PARSER 1
+-#define CONFIG_HEVC_PARSER 0
++#define CONFIG_HEVC_PARSER 1
+ #define CONFIG_MJPEG_PARSER 0
+ #define CONFIG_MLP_PARSER 0
+ #define CONFIG_MPEG4VIDEO_PARSER 0
+diff --git a/chromium/config/Chrome/win-msvc/x64/libavcodec/bsf_list.c b/chromium/config/Chrome/win-msvc/x64/libavcodec/bsf_list.c
+index d31ece942a..ee5ac8ac38 100644
+--- a/chromium/config/Chrome/win-msvc/x64/libavcodec/bsf_list.c
++++ b/chromium/config/Chrome/win-msvc/x64/libavcodec/bsf_list.c
+@@ -1,3 +1,4 @@
+ static const AVBitStreamFilter * const bitstream_filters[] = {
+     &ff_null_bsf,
++    &ff_vp9_superframe_split_bsf,
+     NULL };
+diff --git a/chromium/config/Chrome/win-msvc/x64/libavcodec/codec_list.c b/chromium/config/Chrome/win-msvc/x64/libavcodec/codec_list.c
+index 49f757b2d8..b3a23368ef 100644
+--- a/chromium/config/Chrome/win-msvc/x64/libavcodec/codec_list.c
++++ b/chromium/config/Chrome/win-msvc/x64/libavcodec/codec_list.c
+@@ -1,8 +1,10 @@
+ static const AVCodec * const codec_list[] = {
+     &ff_h264_decoder,
++    &ff_hevc_decoder,
+     &ff_theora_decoder,
+     &ff_vp3_decoder,
+     &ff_vp8_decoder,
++    &ff_vp9_decoder,
+     &ff_aac_decoder,
+     &ff_flac_decoder,
+     &ff_mp3_decoder,
+diff --git a/chromium/config/Chrome/win-msvc/x64/libavcodec/parser_list.c b/chromium/config/Chrome/win-msvc/x64/libavcodec/parser_list.c
+index 19d670aa24..192a64d7ab 100644
+--- a/chromium/config/Chrome/win-msvc/x64/libavcodec/parser_list.c
++++ b/chromium/config/Chrome/win-msvc/x64/libavcodec/parser_list.c
+@@ -2,9 +2,11 @@ static const AVCodecParser * const parser_list[] = {
+     &ff_aac_parser,
+     &ff_flac_parser,
+     &ff_h264_parser,
++    &ff_hevc_parser,
+     &ff_mpegaudio_parser,
+     &ff_opus_parser,
+     &ff_vorbis_parser,
+     &ff_vp3_parser,
+     &ff_vp8_parser,
++    &ff_vp9_parser,
+     NULL };
 diff --git a/ffmpeg_generated.gni b/ffmpeg_generated.gni
-index 5d89a723f5..6d8128d16a 100644
+index 5d89a723f5..e94870b31f 100644
 --- a/ffmpeg_generated.gni
 +++ b/ffmpeg_generated.gni
 @@ -135,6 +135,7 @@ if ((is_android && current_cpu == "arm" && arm_use_neon) || (is_android && curre
@@ -400,7 +565,7 @@ index 5d89a723f5..6d8128d16a 100644
      "libavutil/autorename_libavutil_cpu.c",
      "libavutil/autorename_libavutil_fixed_dsp.c",
      "libavutil/autorename_libavutil_float_dsp.c",
-@@ -249,7 +250,48 @@ if ((is_mac && ffmpeg_branding == "Chrome") || (is_win && ffmpeg_branding == "Ch
+@@ -249,7 +250,35 @@ if ((is_mac && ffmpeg_branding == "Chrome") || (is_win && ffmpeg_branding == "Ch
      "libavcodec/h264dsp.c",
      "libavcodec/h264idct.c",
      "libavcodec/h264qpel.c",
@@ -418,11 +583,6 @@ index 5d89a723f5..6d8128d16a 100644
 +    "libavcodec/hevcdsp.c",
 +    "libavcodec/hevcpred.c",
      "libavcodec/startcode.c",
-+    "libavcodec/vaapi_decode.c",
-+    "libavcodec/vaapi_h264.c",
-+    "libavcodec/vaapi_hevc.c",
-+    "libavcodec/vaapi_vp8.c",
-+    "libavcodec/vaapi_vp9.c",
 +    "libavcodec/vp9.c",
 +    "libavcodec/vp9_superframe_split_bsf.c",
 +    "libavcodec/vp9block.c",
@@ -435,17 +595,29 @@ index 5d89a723f5..6d8128d16a 100644
 +    "libavcodec/vp9mvs.c",
 +    "libavcodec/vp9prob.c",
 +    "libavcodec/vp9recon.c",
-+    "libavutil/hwcontext_vaapi.c",
-+    "libavcodec/cbs.c",
-+    "libavcodec/cbs_h2645.c",
 +    "libavcodec/frame_thread_encoder.c",
 +    "libavcodec/h264_levels.c",
 +    "libavcodec/h265_profile_level.c",
+   ]
+ }
+ 
+@@ -404,6 +433,19 @@ if (use_linux_config && ffmpeg_branding == "ChromeOS") {
+     "libavcodec/tiff_common.c",
+     "libavformat/amr.c",
+     "libavformat/avidec.c",
++    "libavcodec/vaapi_decode.c",
++    "libavcodec/vaapi_h264.c",
++    "libavcodec/vaapi_hevc.c",
++    "libavcodec/vaapi_vp8.c",
++    "libavcodec/vaapi_vp9.c",
++    "libavutil/hwcontext_vaapi.c",
 +    "libavcodec/vaapi_encode.c",
 +    "libavcodec/vaapi_encode_h264.c",
 +    "libavcodec/vaapi_encode_h265.c",
 +    "libavcodec/vaapi_encode_vp8.c",
 +    "libavcodec/vaapi_encode_vp9.c",
++    "libavcodec/cbs.c",
++    "libavcodec/cbs_h2645.c",
    ]
  }
  
@@ -462,7 +634,7 @@ index 5d89a723f5..6d8128d16a 100644
    ]
    ffmpeg_asm_sources += [
      "libavcodec/x86/h264_chromamc.asm",
-@@ -540,6 +588,21 @@ if ((is_mac && ffmpeg_branding == "Chrome") || (is_win && current_cpu == "x64" &
+@@ -540,6 +588,22 @@ if ((is_mac && ffmpeg_branding == "Chrome") || (is_win && current_cpu == "x64" &
      "libavcodec/x86/h264_weight.asm",
      "libavcodec/x86/h264_weight_10bit.asm",
      "libavcodec/x86/qpel.asm",
@@ -481,6 +653,7 @@ index 5d89a723f5..6d8128d16a 100644
 +    "libavcodec/x86/vp9lpf_16bpp.asm",
 +    "libavcodec/x86/vp9mc.asm",
 +    "libavcodec/x86/vp9mc_16bpp.asm",
++    "libavutil/x86/emms.asm",
    ]
  }
  
