@@ -554,7 +554,7 @@ index 19d670aa24..192a64d7ab 100644
 +    &ff_vp9_parser,
      NULL };
 diff --git a/ffmpeg_generated.gni b/ffmpeg_generated.gni
-index 5d89a723f5..e94870b31f 100644
+index 5d89a723f5..84e4abcc46 100644
 --- a/ffmpeg_generated.gni
 +++ b/ffmpeg_generated.gni
 @@ -135,6 +135,7 @@ if ((is_android && current_cpu == "arm" && arm_use_neon) || (is_android && curre
@@ -601,10 +601,12 @@ index 5d89a723f5..e94870b31f 100644
    ]
  }
  
-@@ -404,6 +433,19 @@ if (use_linux_config && ffmpeg_branding == "ChromeOS") {
-     "libavcodec/tiff_common.c",
-     "libavformat/amr.c",
-     "libavformat/avidec.c",
+@@ -355,6 +384,24 @@ if ((current_cpu == "x64" && ffmpeg_branding == "Chrome") || (is_win && current_
+   ]
+ }
+ 
++if (current_cpu == "x64" && ffmpeg_branding == "Chrome" && use_linux_config) {
++  ffmpeg_c_sources += [
 +    "libavcodec/vaapi_decode.c",
 +    "libavcodec/vaapi_h264.c",
 +    "libavcodec/vaapi_hevc.c",
@@ -618,10 +620,13 @@ index 5d89a723f5..e94870b31f 100644
 +    "libavcodec/vaapi_encode_vp9.c",
 +    "libavcodec/cbs.c",
 +    "libavcodec/cbs_h2645.c",
-   ]
- }
- 
-@@ -527,6 +569,12 @@ if ((is_mac && ffmpeg_branding == "Chrome") || (is_win && current_cpu == "x64" &
++  ]
++}
++
+ if (use_linux_config && ffmpeg_branding == "ChromeOS") {
+   ffmpeg_c_sources += [
+     "libavcodec/acelp_filters.c",
+@@ -527,6 +574,12 @@ if ((is_mac && ffmpeg_branding == "Chrome") || (is_win && current_cpu == "x64" &
      "libavcodec/x86/h264_qpel.c",
      "libavcodec/x86/h264chroma_init.c",
      "libavcodec/x86/h264dsp_init.c",
@@ -634,7 +639,7 @@ index 5d89a723f5..e94870b31f 100644
    ]
    ffmpeg_asm_sources += [
      "libavcodec/x86/h264_chromamc.asm",
-@@ -540,6 +588,22 @@ if ((is_mac && ffmpeg_branding == "Chrome") || (is_win && current_cpu == "x64" &
+@@ -540,6 +593,22 @@ if ((is_mac && ffmpeg_branding == "Chrome") || (is_win && current_cpu == "x64" &
      "libavcodec/x86/h264_weight.asm",
      "libavcodec/x86/h264_weight_10bit.asm",
      "libavcodec/x86/qpel.asm",
@@ -656,4 +661,3 @@ index 5d89a723f5..e94870b31f 100644
 +    "libavutil/x86/emms.asm",
    ]
  }
- 
