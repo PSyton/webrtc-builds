@@ -371,6 +371,8 @@ function combine::static() {
     # Find only the libraries we need
     if [ $platform = 'win' ]; then
       local whitelist="boringssl.dll.lib|protobuf_lite.dll.lib|webrtc\.lib|field_trial_default.lib|metrics_default.lib"
+	elif [ $platform = 'mac' ]; then
+	  local whitelist="webrtc\.a"
     else
       local whitelist="boringssl\.a|protobuf_full\.a|webrtc\.a|field_trial_default\.a|metrics_default\.a"
     fi
@@ -382,6 +384,11 @@ function combine::static() {
       # TODO: Support VS 2017
       "c:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.25.28610\bin\Hostx64\x64\lib" /OUT:$libname.lib @$libname.list
       ;;
+	mac)
+	  while read a; do
+        cp $a $libname.a
+      done <$libname.list
+	  ;;
     *)
       # Combine *.a static libraries
       echo "CREATE $libname.a" >$libname.ar
@@ -436,6 +443,7 @@ function compile() {
   # like the clang compiled libraries, so the option is there.
   # Set `is_clang=false` and `use_sysroot=false` to build using gcc.
   if [ $ENABLE_CLANG = 0 ]; then
+    [ $platform = 'mac' ] && common_args+=" use_custom_libcxx=false use_custom_libcxx_for_host=false"
     [ $platform = 'win' ] && common_args+=" is_clang=false"
     [ $platform = 'linux' ] && common_args+=" is_clang=false use_sysroot=false linux_use_bundled_binutils=false use_custom_libcxx=false use_custom_libcxx_for_host=false"
   fi
