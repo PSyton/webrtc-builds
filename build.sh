@@ -65,8 +65,8 @@ PACKAGE_FILENAME_PATTERN=${PACKAGE_FILENAME_PATTERN:-"webrtc-%rn%-%sr%-%to%-%tc%
 PACKAGE_NAME_PATTERN=${PACKAGE_NAME_PATTERN:-"webrtc"}
 PACKAGE_VERSION_PATTERN=${PACKAGE_VERSION_PATTERN:-"%rn%"}
 REPO_URL="https://github.com/anba8005/owt-deps-webrtc.git"
-REVISION="48bc4a6b97dffc50386f784c2b047ca4b3f39b4e"
-REVISION_NUMBER=29507
+REVISION="789887ec96919cfb1bff7f039078ad1961a07b27"
+REVISION_NUMBER=30987
 DEPOT_TOOLS_URL="https://chromium.googlesource.com/chromium/tools/depot_tools.git"
 DEPOT_TOOLS_DIR=$DIR/depot_tools
 TOOLS_DIR=$DIR/tools
@@ -122,17 +122,15 @@ if [ $BUILD_ONLY = 0 ]; then
   echo Patching WebRTC source
   patch $PLATFORM $OUTDIR $ENABLE_RTTI
 
-  echo Patching WebRTC msvc h264 build fix
-  cd out/src
-  /usr/bin/patch -p1 < ../../msvc-h264-build-fix.patch
-  cd ../..
+  #echo Patching WebRTC msvc h264 build fix
+  #cd out/src
+  #/usr/bin/patch -p1 < ../../msvc-h264-build-fix.patch
+  #cd ../..
 
   echo Patching WebRTC ffmpeg
   cd out/src/third_party/ffmpeg/
   /usr/bin/patch -p1 < ../../../../ffmpeg-nvdec-vaapi-encoder-decoder.patch
   /usr/bin/patch -p1 < ../../../../ffmpeg-msvc-build-fix.patch
-  # https://github.com/FFmpeg/FFmpeg/commit/efefba61f8513e9d909af041b17584fd82775c63
-  /usr/bin/patch -p1 < ../../../../ffmpeg-vaapi-vp8-fix.patch
   cd ../../../..
 
 fi

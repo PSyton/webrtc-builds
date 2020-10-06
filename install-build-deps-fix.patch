@@ -1,23 +1,15 @@
---- install-build-deps.sh      2020-03-06 20:40:44.564268795 +0200
-+++ install-build-deps.sh.new  2020-03-06 20:43:46.392152844 +0200
+--- install-build-deps.sh
++++ install-build-deps.sh.new
 @@ -102,7 +102,7 @@ fi
  
  distro_codename=$(lsb_release --codename --short)
  distro_id=$(lsb_release --id --short)
--supported_codenames="(trusty|xenial|bionic|disco)"
+-supported_codenames="(trusty|xenial|bionic|disco|eoan)"
 +supported_codenames="(trusty|xenial|bionic|disco|eoan|focal)"
  supported_ids="(Debian)"
  if [ 0 -eq "${do_unsupported-0}" ] && [ 0 -eq "${do_quick_check-0}" ] ; then
    if [[ ! $distro_codename =~ $supported_codenames &&
-@@ -174,7 +174,6 @@ dev_list="\
-   libgbm-dev
-   libglib2.0-dev
-   libglu1-mesa-dev
--  libgnome-keyring-dev
-   libgtk-3-dev
-   libkrb5-dev
-   libnspr4-dev
-@@ -199,11 +198,9 @@ dev_list="\
+@@ -200,11 +200,9 @@ dev_list="\
    perl
    pkg-config
    python
@@ -29,35 +21,30 @@
    python-openssl
    python-psutil
    python-yaml
-@@ -239,11 +236,10 @@ common_lib_list="\
-   libcap2
-   libcups2
+@@ -242,7 +240,7 @@ common_lib_list="\
+   libdrm2
+   libevdev2
    libexpat1
 -  libffi6
 +  libffi7
    libfontconfig1
    libfreetype6
-   libglib2.0-0
--  libgnome-keyring0
-   libgtk-3-0
-   libpam0g
-   libpango1.0-0
-@@ -475,25 +471,11 @@ fi
- if package_exists libbrlapi0.6; then
-   dev_list="${dev_list} libbrlapi0.6"
+   libgbm1
+@@ -481,25 +479,9 @@ elif package_exists libbrlapi0.6; then
  else
--  dev_list="${dev_list} libbrlapi0.5"
--fi
+   dev_list="${dev_list} libbrlapi0.5"
+ fi
 -if package_exists apache2.2-bin; then
 -  dev_list="${dev_list} apache2.2-bin"
 -else
 -  dev_list="${dev_list} apache2-bin"
-+  dev_list="${dev_list} libbrlapi0.7"
- fi
+-fi
  if package_exists libav-tools; then
    dev_list="${dev_list} libav-tools"
  fi
--if package_exists php7.2-cgi; then
+-if package_exists php7.3-cgi; then
+-  dev_list="${dev_list} php7.3-cgi libapache2-mod-php7.3"
+-elif package_exists php7.2-cgi; then
 -  dev_list="${dev_list} php7.2-cgi libapache2-mod-php7.2"
 -elif package_exists php7.1-cgi; then
 -  dev_list="${dev_list} php7.1-cgi libapache2-mod-php7.1"

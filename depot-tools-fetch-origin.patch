@@ -6,7 +6,7 @@ diff -Naur depot_tools/fetch_configs/webrtc.py depot_tools.new/fetch_configs/web
    @staticmethod
    def fetch_spec(props):
 -    url = 'https://webrtc.googlesource.com/src.git'
-+    url = 'https://github.com/anba8005/owt-deps-webrtc.git@48bc4a6b97dffc50386f784c2b047ca4b3f39b4e'
++    url = 'https://github.com/anba8005/owt-deps-webrtc.git@789887ec96919cfb1bff7f039078ad1961a07b27'
      spec = {
        'solutions': [
          {
