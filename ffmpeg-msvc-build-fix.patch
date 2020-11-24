@@ -9,3 +9,17 @@ index ffcbccc77d..2fc81bf069 100644
 +#ifndef WIN32
  PCM_CODEC  (PCM_VIDC,         AV_SAMPLE_FMT_S16, pcm_vidc,         "PCM Archimedes VIDC");
 +#endif
+diff --git a/libavcodec/vp9.c b/libavcodec/vp9.c
+index 7aaae9b792..a63a91f90c 100644
+--- a/libavcodec/vp9.c
++++ b/libavcodec/vp9.c
+@@ -173,8 +173,7 @@ static int update_size(AVCodecContext *avctx, int w, int h)
+ #define HWACCEL_MAX (CONFIG_VP9_DXVA2_HWACCEL + \
+                      CONFIG_VP9_D3D11VA_HWACCEL * 2 + \
+                      CONFIG_VP9_NVDEC_HWACCEL + \
+-                     CONFIG_VP9_VAAPI_HWACCEL + \
+-                     CONFIG_VP9_VDPAU_HWACCEL)
++                     CONFIG_VP9_VAAPI_HWACCEL)
+     enum AVPixelFormat pix_fmts[HWACCEL_MAX + 2], *fmtp = pix_fmts;
+     VP9Context *s = avctx->priv_data;
+     uint8_t *p;
